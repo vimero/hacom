@@ -1,0 +1,8 @@
+server:
+  port: ${API_PORT:9898}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

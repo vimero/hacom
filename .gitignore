@@ -1,0 +1,51 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+**/out/
+
+# IDEs and editors
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.sw?
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Environment files
+.env
+.env.*
+
+# Spring Boot specific
+target/
+.spring-boot-devtools.properties
+*.h2.db
+
+# Test reports
+test-output/
+surefire-reports/
+jacoco.exec

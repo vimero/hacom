@@ -1,0 +1,45 @@
+Configuration:
+  status: INFO
+  name: Log4j2Config
+  properties:
+    property:
+      - name: LOG_PATTERN
+        value: "%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"
+
+  Appenders:
+    Console:
+      name: ConsoleAppender
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "${LOG_PATTERN}"
+
+    File:
+      name: FileAppender
+      fileName: logs/app.log
+      PatternLayout:
+        pattern: "${LOG_PATTERN}"
+      Policies:
+        TimeBasedTriggeringPolicy:
+          interval: 1
+          modulate: true
+
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: ConsoleAppender
+        - ref: FileAppender
+
+    Logger:
+      - name: org.springframework
+        level: warn
+        additivity: false
+        AppenderRef:
+          - ref: ConsoleAppender
+
+      - name: pe.com.hacom.oms
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: ConsoleAppender
+          - ref: FileAppender
