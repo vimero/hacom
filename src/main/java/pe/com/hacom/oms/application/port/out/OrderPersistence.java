@@ -1,9 +1,10 @@
 package pe.com.hacom.oms.application.port.out;
 
 import pe.com.hacom.oms.application.domain.Order;
+import reactor.core.publisher.Mono;
 
 public interface OrderPersistence {
 
-    void save(Order order);
+    Mono<Order> save(Order order);
 
 }
