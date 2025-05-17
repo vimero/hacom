@@ -39,15 +39,16 @@ dependencies {
     implementation 'io.grpc:grpc-stub:1.62.2'
     implementation 'com.google.protobuf:protobuf-java:3.25.3'
 
+    // Akka
+    implementation 'com.typesafe.akka:akka-actor_2.13:2.6.20'
+    implementation 'com.typesafe.akka:akka-slf4j_2.13:2.6.20'
+
     // Lombok
     implementation 'org.projectlombok:lombok'
     testImplementation 'org.projectlombok:lombok'
 
     // Testing
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.mockito', module: 'mockito-core'
-        exclude group: 'org.mockito', module: 'mockito-junit-jupiter'
-    }
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
 }
 
