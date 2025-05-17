@@ -7,3 +7,4 @@ management:
 mongodbDatabase: exampleDb
 mongodbUri: mongodb://${MONGO_DB_USER:admin}:${MONGO_DB_PASS:admin123}@127.0.0.1:27017
 apiPort: 9898
+grcpPort: 9090

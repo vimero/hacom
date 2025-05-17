@@ -19,7 +19,6 @@
 .gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
-**/out/
 
 # IDEs and editors
 .idea/
