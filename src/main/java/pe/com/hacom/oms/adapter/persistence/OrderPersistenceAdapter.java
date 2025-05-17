@@ -3,6 +3,7 @@ package pe.com.hacom.oms.adapter.persistence;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pe.com.hacom.oms.adapter.micrometer.OrderMetrics;
 import pe.com.hacom.oms.adapter.persistence.mongodb.document.OrderDocument;
 import pe.com.hacom.oms.adapter.persistence.mongodb.repository.OrderRepository;
 import pe.com.hacom.oms.application.domain.Order;
@@ -19,6 +20,7 @@ public class OrderPersistenceAdapter implements OrderPersistence {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
+    private final OrderMetrics orderMetrics;
 
     public Mono<Order> save(Order order) {
         OrderDocument orderDocument = orderMapper.toDocument(order);
@@ -28,7 +30,10 @@ public class OrderPersistenceAdapter implements OrderPersistence {
                     savedDoc.setOrderId(savedDoc.get_id().toHexString());
                     return orderRepository.save(savedDoc);
                 })
-                .doOnSuccess(doc -> log.info("Persisted order with ID {}", doc.getOrderId()))
+                .doOnSuccess(doc -> {
+                    orderMetrics.incrementOrderCreated();
+                    log.info("Persisted order with ID {}", doc.getOrderId());
+                })
                 .map(orderMapper::toOrder);
     }
 
