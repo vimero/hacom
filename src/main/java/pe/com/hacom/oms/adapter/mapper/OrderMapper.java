@@ -9,7 +9,6 @@ import pe.com.hacom.oms.application.domain.Order;
 import pe.com.hacom.oms.application.domain.OrderItem;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
@@ -32,7 +31,7 @@ public interface OrderMapper {
         }
         return items.stream()
                 .map(item -> new OrderItem(item, 1))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Named("mapOrderItemsToItems")
@@ -42,6 +41,6 @@ public interface OrderMapper {
         }
         return orderItems.stream()
                 .map(OrderItem::getItemId)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

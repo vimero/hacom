@@ -4,7 +4,14 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 import pe.com.hacom.oms.adapter.persistence.mongodb.document.OrderDocument;
+import reactor.core.publisher.Mono;
+
+import java.time.OffsetDateTime;
 
 @Repository
 public interface OrderRepository extends ReactiveMongoRepository<OrderDocument, ObjectId> {
+
+    Mono<OrderDocument> findByOrderId(String orderId);
+    Mono<Long> countByTsBetween(OffsetDateTime from, OffsetDateTime to);
+
 }

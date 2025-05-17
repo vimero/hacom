@@ -17,7 +17,6 @@ public class GrcpOrderClient {
         OrderServiceGrpc.OrderServiceBlockingStub stub = OrderServiceGrpc.newBlockingStub(channel);
 
         OrderRequest request = OrderRequest.newBuilder()
-                .setOrderId("ORD-1001")
                 .setCustomerId("CUST-001")
                 .setPhoneNumber("+51987654321")
                 .addItems(OrderItem.newBuilder().setItemId("ITEM-1").setQuantity(2).build())
