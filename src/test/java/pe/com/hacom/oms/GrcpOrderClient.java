@@ -25,7 +25,7 @@ public class GrcpOrderClient {
                 .build();
 
         OrderResponse response = stub.insertOrder(request);
-        System.out.println("Response: Order ID = " + response.getOrderId() + ", Status = " + response.getStatus());
+        System.out.println("Response: OrderDocument ID = " + response.getOrderId() + ", Status = " + response.getStatus());
 
         channel.shutdown();
     }
