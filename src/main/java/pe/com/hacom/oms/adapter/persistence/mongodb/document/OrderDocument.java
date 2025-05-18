@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.OffsetDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -19,6 +19,6 @@ public class OrderDocument {
     private String customerPhoneNumber;
     private String status;
     private List<String> items;
-    private OffsetDateTime ts;
+    private Instant ts;
 
 }

@@ -20,7 +20,7 @@ public interface OrderMapper {
 
     @InheritInverseConfiguration
     @Mapping(target = "_id", ignore = true)
-    @Mapping(target = "ts", expression = "java(java.time.OffsetDateTime.now())")
+    @Mapping(target = "ts", expression = "java(java.time.Instant.now())")
     @Mapping(target = "status", constant = "RECEIVED")
     @Mapping(source = "items", target = "items", qualifiedByName = "mapOrderItemsToItems")
     OrderDocument toDocument(Order order);

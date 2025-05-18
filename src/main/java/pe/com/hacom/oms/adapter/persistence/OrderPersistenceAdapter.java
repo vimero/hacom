@@ -11,6 +11,7 @@ import pe.com.hacom.oms.application.port.out.OrderPersistence;
 import pe.com.hacom.oms.adapter.mapper.OrderMapper;
 import reactor.core.publisher.Mono;
 
+import java.time.Instant;
 import java.time.OffsetDateTime;
 
 @Slf4j
@@ -45,7 +46,7 @@ public class OrderPersistenceAdapter implements OrderPersistence {
     }
 
     @Override
-    public Mono<Long> countOrdersByDateRange(OffsetDateTime from, OffsetDateTime to) {
+    public Mono<Long> countOrdersByDateRange(Instant from, Instant to) {
         return orderRepository.countByTsBetween(from, to);
     }
 
