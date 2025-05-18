@@ -6,12 +6,12 @@ import org.springframework.stereotype.Repository;
 import pe.com.hacom.oms.adapter.persistence.mongodb.document.OrderDocument;
 import reactor.core.publisher.Mono;
 
-import java.time.OffsetDateTime;
+import java.time.Instant;
 
 @Repository
 public interface OrderRepository extends ReactiveMongoRepository<OrderDocument, ObjectId> {
 
     Mono<OrderDocument> findByOrderId(String orderId);
-    Mono<Long> countByTsBetween(OffsetDateTime from, OffsetDateTime to);
+    Mono<Long> countByTsBetween(Instant from, Instant to);
 
 }

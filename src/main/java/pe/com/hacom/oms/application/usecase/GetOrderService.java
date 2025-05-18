@@ -5,6 +5,7 @@ import pe.com.hacom.oms.application.port.in.GetOrderUseCase;
 import pe.com.hacom.oms.application.port.out.OrderPersistence;
 import reactor.core.publisher.Mono;
 
+import java.time.Instant;
 import java.time.OffsetDateTime;
 
 @RequiredArgsConstructor
@@ -18,7 +19,7 @@ public class GetOrderService implements GetOrderUseCase {
     }
 
     @Override
-    public Mono<Long> countBetween(OffsetDateTime from, OffsetDateTime to) {
+    public Mono<Long> countBetween(Instant from, Instant to) {
         return orderPersistence.countOrdersByDateRange(from, to);
     }
 
