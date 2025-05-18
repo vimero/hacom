@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "ffcb4fa0-2938-44d8-a3bf-316ac9bcb26a",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2900850",
+		"_collection_link": "https://vimero.postman.co/workspace/Hacom~7eabb23e-13be-46a8-81ba-e294bd1a3318/collection/2900850-ffcb4fa0-2938-44d8-a3bf-316ac9bcb26a?action=share&source=collection_link&creator=2900850"
+	},
+	"item": [
+		{
+			"name": "count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9898/orders/count?from=2025-05-01T00:00:00Z&to=2025-05-19T00:00:00Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9898",
+					"path": [
+						"orders",
+						"count"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2025-05-01T00:00:00Z"
+						},
+						{
+							"key": "to",
+							"value": "2025-05-19T00:00:00Z"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "count",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/orders/count?from=2025-05-01T00:00:00Z&to=2025-05-19T00:00:00Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"orders",
+								"count"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2025-05-01T00:00:00Z"
+								},
+								{
+									"key": "to",
+									"value": "2025-05-19T00:00:00Z"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9898/orders/6828f2f2b35b890f9398d183/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9898",
+					"path": [
+						"orders",
+						"6828f2f2b35b890f9398d183",
+						"status"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9898/orders/6828f2f2b35b890f9398d183/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9898",
+							"path": [
+								"orders",
+								"6828f2f2b35b890f9398d183",
+								"status"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
