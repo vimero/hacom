@@ -2,21 +2,21 @@ package pe.com.hacom.oms.adapter.actor;
 
 import akka.actor.AbstractActor;
 import akka.actor.Props;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import pe.com.hacom.oms.application.port.in.CreateOrderUseCase;
+import pe.com.hacom.oms.application.port.out.SmsSenderPort;
 import pe.com.hacom.oms.grpc.OrderResponse;
 
 @Slf4j
+@RequiredArgsConstructor
 public class OrderProcessorActor extends AbstractActor {
 
     private final CreateOrderUseCase createOrderUseCase;
+    private final SmsSenderPort smsSender;
 
-    public static Props props(CreateOrderUseCase createOrderUseCase) {
-        return Props.create(OrderProcessorActor.class, () -> new OrderProcessorActor(createOrderUseCase));
-    }
-
-    public OrderProcessorActor(CreateOrderUseCase createOrderUseCase) {
-        this.createOrderUseCase = createOrderUseCase;
+    public static Props props(CreateOrderUseCase createOrderUseCase, SmsSenderPort smsSender) {
+        return Props.create(OrderProcessorActor.class, () -> new OrderProcessorActor(createOrderUseCase, smsSender));
     }
 
     @Override
@@ -28,7 +28,11 @@ public class OrderProcessorActor extends AbstractActor {
                     createOrderUseCase.createOrder(msg.order())
                             .subscribe(
                                     createdOrder -> {
-                                        log.info("Orden procesada y persistida: {}", createdOrder.getOrderId());
+                                        log.info("Orden procesada: {}", createdOrder.getOrderId());
+
+                                        String message = "Your order " + createdOrder.getOrderId() + " has been processed";
+                                        smsSender.sendSms(createdOrder.getPhoneNumber(), message);
+
                                         OrderResponse response = OrderResponse.newBuilder()
                                                 .setOrderId(createdOrder.getOrderId())
                                                 .setStatus("PROCESSED")

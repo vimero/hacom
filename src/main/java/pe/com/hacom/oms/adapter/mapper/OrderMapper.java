@@ -8,6 +8,7 @@ import pe.com.hacom.oms.adapter.persistence.mongodb.document.OrderDocument;
 import pe.com.hacom.oms.application.domain.Order;
 import pe.com.hacom.oms.application.domain.OrderItem;
 
+import java.util.Collections;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
@@ -27,7 +28,7 @@ public interface OrderMapper {
     @Named("mapItemsToOrderItems")
     default List<OrderItem> mapItemsToOrderItems(List<String> items) {
         if (items == null) {
-            return null;
+            return Collections.emptyList();
         }
         return items.stream()
                 .map(item -> new OrderItem(item, 1))
@@ -37,7 +38,7 @@ public interface OrderMapper {
     @Named("mapOrderItemsToItems")
     default List<String> mapOrderItemsToItems(List<OrderItem> orderItems) {
         if (orderItems == null) {
-            return null;
+            return Collections.emptyList();
         }
         return orderItems.stream()
                 .map(OrderItem::getItemId)

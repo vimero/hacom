@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import pe.com.hacom.oms.adapter.actor.OrderProcessorActor;
 import pe.com.hacom.oms.adapter.grpc.OrderGrpcService;
 import pe.com.hacom.oms.application.port.in.CreateOrderUseCase;
+import pe.com.hacom.oms.application.port.out.SmsSenderPort;
 
 import java.io.IOException;
 
@@ -27,8 +28,10 @@ public class GrpcServerConfig {
     }
 
     @Bean
-    public ActorRef orderProcessorActor(ActorSystem system, CreateOrderUseCase createOrderUseCase) {
-        return system.actorOf(OrderProcessorActor.props(createOrderUseCase), "orderProcessor");
+    public ActorRef orderProcessorActor(ActorSystem system,
+                                        CreateOrderUseCase createOrderUseCase,
+                                        SmsSenderPort smsSenderPort) {
+        return system.actorOf(OrderProcessorActor.props(createOrderUseCase, smsSenderPort), "orderProcessor");
     }
 
     @Bean
