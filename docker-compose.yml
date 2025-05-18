@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: oms-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: exampleDb
+    volumes:
+      - mongo_data:/data/db
+
+  oms-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oms-service
+    ports:
+      - "9898:9898"
+      - "9090:9090"
+    environment:
+      SMPP_HOST: smpp.server.host
+      SMPP_PORT: 2775
+      SMPP_SYSTEM_ID: yourSystemId
+      SMPP_PASSWORD: yourPassword
+      MONGODB_URI: mongodb://admin:admin123@127.0.0.1:27017?connectTimeoutMS=100000&socketTimeoutMS=100000
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
